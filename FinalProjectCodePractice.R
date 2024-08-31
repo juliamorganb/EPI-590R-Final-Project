@@ -1,4 +1,7 @@
+
+
 library(tidyverse)
+setwd("/Users/juliabaumohl/Library/CloudStorage/OneDrive-Emory/EPI 590 R Bootcamp/EPI590R Final Project/covid_testing.rda")
 library(gtsummary)
 
 tbl_summary(
