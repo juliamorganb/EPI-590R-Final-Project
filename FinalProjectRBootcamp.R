@@ -35,7 +35,6 @@ hist(covid_testing$pan_day)
 
 ##pt 4
 
-x <- covid_testing$pan_day
 
 max_minus_min <- function(x){
 	maxminfunct <- max(x, na.rm = FALSE) - min(x, na.rm = FALSE)

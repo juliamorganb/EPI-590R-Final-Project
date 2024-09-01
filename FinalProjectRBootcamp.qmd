@@ -2,7 +2,6 @@
 title: "Final Project R Bootcamp"
 author: "Julia Baumohl"
 format: html
-editor: visual
 execute: 
   echo: false
 ---
@@ -22,7 +21,7 @@ covid_testing$result_num <- ifelse(covid_testing$result == "negative",0,
 																	 ifelse(covid_testing$result == "positive", 1, NA))
 ```
 
-Table 1
+# Table 1
 
 ```{r}
 tbl_summary(
@@ -35,3 +34,53 @@ label = list(
 	pan_day ~ "Day after start of pandemic in which specimen was collected"
 ))
 ```
+
+# Regression
+
+```{r}
+tbl_uvregression(
+	covid_testing,
+	y = result_num,
+	include = c(gender_num, age, pan_day),
+	method = glm,
+	method.args = list(family = binomial()),
+	exponentiate = TRUE)
+```
+
+# Figure (describe) 
+
+```{r}
+hist(covid_testing$pan_day)
+```
+
+```{r}
+#| output: false
+
+max_minus_min <- function(x){
+	maxminfunct <- max(x, na.rm = FALSE) - min(x, na.rm = FALSE)
+	return(maxminfunct)
+}
+max_minus_min(x = covid_testing$pan_day)
+
+```
+
+# LEFT TO DO
+
+add captions for table 1, regression, and figure
+
+aInline R code in at least 2 places, 1 pulling a statistic from a table (i.e., using `gtsummary::inline_text()`) and 1 printing something else (like we did with the mean age in the example) (1 pt)
+
+-   Cross-references to a table and a figure at least once each (1 pt)
+
+-   A brief description of the data, including its source (1 pt)
+
+```{=html}
+<!-- -->
+```
+-   Use the `{here}` package every time you refer to file paths when reading in data and saving any files (1 pt)
+
+    -   You must use it at least twice Feel free to save any files that you create (e.g., your figure) in your code
+
+-   Commit and push your work to GitHub as you go (1 pt)
+
+-   In a README file, include any notes necessary for us to easily reproduce your analysis (e.g., “Run `script.R` and then render `document.qmd`”) (1 pt)
