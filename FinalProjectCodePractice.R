@@ -33,6 +33,11 @@ tbl_uvregression(
 ##pt 3
 hist(covid_testing$pan_day)
 
+##pt 4
 
 
+new_range<- function(pan_day){
 
+###figure out how to do the range of a numeric variable
+
+}
