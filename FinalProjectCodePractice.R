@@ -35,9 +35,12 @@ hist(covid_testing$pan_day)
 
 ##pt 4
 
+x <- covid_testing$pan_day
 
-new_range<- function(pan_day){
-
-###figure out how to do the range of a numeric variable
-
+new_max <- function(x){
+	maxfunct <- max(x, na.rm = FALSE)
+	return(maxfunct)
 }
+new_max(x = covid_testing$pan_day)
+
+max(covid_testing$pan_day, na.rm = FALSE)
