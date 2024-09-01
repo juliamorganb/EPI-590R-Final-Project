@@ -1,21 +1,30 @@
 ---
-title: "Final Project R"
+title: "Final Project R Bootcamp"
 author: "Julia Baumohl"
 format: html
 editor: visual
+execute: 
+  echo: false
 ---
 
 ```{r}
+#| output: false
 library(tidyverse)
 library(gtsummary)
+
+library(tidyverse)
+library(gtsummary)
+
+load("/Users/juliabaumohl/Library/CloudStorage/OneDrive-Emory/EPI 590 R Bootcamp/EPI590R Final Project/covid_testing.rda")
 
 covid_testing$gender_num <- ifelse(covid_testing$gender == "female",1,0)
 covid_testing$result_num <- ifelse(covid_testing$result == "negative",0,
 																	 ifelse(covid_testing$result == "positive", 1, NA))
+```
 
-table(covid_testing$gender_num)
-table(covid_testing$result_num)
+Table 1
 
+```{r}
 tbl_summary(
 	covid_testing,
 	by = result,
