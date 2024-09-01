@@ -21,6 +21,10 @@ covid_testing$result_num <- ifelse(covid_testing$result == "negative",0,
 																	 ifelse(covid_testing$result == "positive", 1, NA))
 ```
 
+# Data Background:					
+
+This data set is from Amrom E. Obstfeld, who de-identified data on COVID-19 testing during 2020 at CHOP (Children’s Hospital of Pennsylvania). This data set contains data concerning testing for SARS-CoV2 via PCR as well as associated metadata including names, ages, genders, day of pandemic testing took place, clinic names, etc. The data has been anonymized, time-shifted, and permuted.
+
 # Table 1
 
 ```{r}
@@ -35,6 +39,8 @@ label = list(
 ))
 ```
 
+This table 1 is not inclusive of all variables in the data set, only of variables included in the regression.
+
 # Regression
 
 ```{r}
@@ -47,11 +53,15 @@ tbl_uvregression(
 	exponentiate = TRUE)
 ```
 
-# Figure (describe) 
+This regression is not to be interpreted scientifically, and only conducted for coding practice purposes.
+
+# Histogram of Day in Pandemic Testing Occured
 
 ```{r}
 hist(covid_testing$pan_day)
 ```
+
+This table examines the number of COVID-19 tests daily in the data set after the pandemic began.
 
 ```{r}
 #| output: false
@@ -66,13 +76,9 @@ max_minus_min(x = covid_testing$pan_day)
 
 # LEFT TO DO
 
-add captions for table 1, regression, and figure
-
-aInline R code in at least 2 places, 1 pulling a statistic from a table (i.e., using `gtsummary::inline_text()`) and 1 printing something else (like we did with the mean age in the example) (1 pt)
+Inline R code in at least 2 places, 1 pulling a statistic from a table (i.e., using `gtsummary::inline_text()`) and 1 printing something else (like we did with the mean age in the example) (1 pt)
 
 -   Cross-references to a table and a figure at least once each (1 pt)
-
--   A brief description of the data, including its source (1 pt)
 
 ```{=html}
 <!-- -->
@@ -80,7 +86,5 @@ aInline R code in at least 2 places, 1 pulling a statistic from a table (i.e., u
 -   Use the `{here}` package every time you refer to file paths when reading in data and saving any files (1 pt)
 
     -   You must use it at least twice Feel free to save any files that you create (e.g., your figure) in your code
-
--   Commit and push your work to GitHub as you go (1 pt)
 
 -   In a README file, include any notes necessary for us to easily reproduce your analysis (e.g., “Run `script.R` and then render `document.qmd`”) (1 pt)
