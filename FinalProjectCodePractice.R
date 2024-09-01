@@ -10,6 +10,7 @@ covid_testing$result_num <- ifelse(covid_testing$result == "negative",0,
 table(covid_testing$gender_num)
 table(covid_testing$result_num)
 
+##pt 1
 tbl_summary(
 	covid_testing,
 	by = result,
@@ -20,8 +21,18 @@ label = list(
 	pan_day ~ "Day after start of pandemic in which specimen was collected"
 ))
 
+##pt 2
 tbl_uvregression(
 	covid_testing,
 	y = result_num,
 	include = c(gender_num, age, pan_day),
-	method =lm)
+	method = glm,
+	method.args = list(family = binomial()),
+	exponentiate = TRUE)
+
+##pt 3
+hist(covid_testing$pan_day)
+
+
+
+
