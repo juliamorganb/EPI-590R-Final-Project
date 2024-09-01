@@ -3,16 +3,25 @@ setwd("/Users/juliabaumohl/Library/CloudStorage/OneDrive-Emory/EPI 590 R Bootcam
 library(tidyverse)
 library(gtsummary)
 
+covid_testing$gender_num <- ifelse(covid_testing$gender == "female",1,0)
+covid_testing$result_num <- ifelse(covid_testing$result == "negative",0,
+																	 ifelse(covid_testing$result == "positive", 1, NA))
+
+table(covid_testing$gender_num)
+table(covid_testing$result_num)
+
 tbl_summary(
 	covid_testing,
-	by = gender,
-	include = c(result,age,pan_day),
+	by = result,
+	include = c(gender,age,pan_day),
 label = list(
-	result ~ "Test Result",
+	gender ~ "Gender",
 	age ~ "Age (Years)",
 	pan_day ~ "Day after start of pandemic in which specimen was collected"
-),
-missing_text = "Missing")
+))
 
-linear_model <- lm(gender ~ age + pan_day, data=covid_testing)
-
+tbl_uvregression(
+	covid_testing,
+	y = result_num,
+	include = c(gender_num, age, pan_day),
+	method =lm)
