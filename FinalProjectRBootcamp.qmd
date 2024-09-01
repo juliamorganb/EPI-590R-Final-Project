@@ -11,10 +11,10 @@ execute:
 library(tidyverse)
 library(gtsummary)
 
-library(tidyverse)
-library(gtsummary)
+install.packages("here")
+getwd()
 
-load("/Users/juliabaumohl/Library/CloudStorage/OneDrive-Emory/EPI 590 R Bootcamp/EPI590R Final Project/covid_testing.rda")
+covid_testing <- load(here::here("EPI 590 R Bootcamp/EPI590R Final Project/covid_testing.rda"))
 
 covid_testing$gender_num <- ifelse(covid_testing$gender == "female",1,0)
 covid_testing$result_num <- ifelse(covid_testing$result == "negative",0,
