@@ -1,7 +1,7 @@
-setwd("/Users/juliabaumohl/Library/CloudStorage/OneDrive-Emory/EPI 590 R Bootcamp/EPI590R Final Project/covid_testing.rda")
-
 library(tidyverse)
 library(gtsummary)
+
+load("/Users/juliabaumohl/Library/CloudStorage/OneDrive-Emory/EPI 590 R Bootcamp/EPI590R Final Project/covid_testing.rda")
 
 covid_testing$gender_num <- ifelse(covid_testing$gender == "female",1,0)
 covid_testing$result_num <- ifelse(covid_testing$result == "negative",0,

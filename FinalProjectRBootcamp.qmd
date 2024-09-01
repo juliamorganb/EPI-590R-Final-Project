@@ -3,8 +3,6 @@ title: "Final Project R"
 author: "Julia Baumohl"
 format: html
 editor: visual
-execute: 
-  echo: false
 ---
 
 ```{r}
