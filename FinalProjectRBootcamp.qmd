@@ -17,6 +17,14 @@ setwd("EPI590R Final Project")
 covid_testing <- load(here::here("EPI590R Final Project", "covid_testing.rda"))
 #####KEEP TRYING TO CHANGE WORKING DIRECTORY/USE HERE PACKAGE TO CALL
 
+
+
+
+
+
+
+
+
 covid_testing$gender_num <- ifelse(covid_testing$gender == "female",1,0)
 covid_testing$result_num <- ifelse(covid_testing$result == "negative",0,
 																	 ifelse(covid_testing$result == "positive", 1, NA))
