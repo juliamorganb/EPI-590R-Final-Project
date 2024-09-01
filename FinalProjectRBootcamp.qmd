@@ -1,0 +1,30 @@
+---
+title: "Final Project R"
+author: "Julia Baumohl"
+format: html
+editor: visual
+execute: 
+  echo: false
+---
+
+```{r}
+library(tidyverse)
+library(gtsummary)
+
+covid_testing$gender_num <- ifelse(covid_testing$gender == "female",1,0)
+covid_testing$result_num <- ifelse(covid_testing$result == "negative",0,
+																	 ifelse(covid_testing$result == "positive", 1, NA))
+
+table(covid_testing$gender_num)
+table(covid_testing$result_num)
+
+tbl_summary(
+	covid_testing,
+	by = result,
+	include = c(gender,age,pan_day),
+label = list(
+	gender ~ "Gender",
+	age ~ "Age (Years)",
+	pan_day ~ "Day after start of pandemic in which specimen was collected"
+))
+```
