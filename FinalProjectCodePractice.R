@@ -15,3 +15,4 @@ label = list(
 missing_text = "Missing")
 
 linear_model <- lm(gender ~ age + pan_day, data=covid_testing)
+
