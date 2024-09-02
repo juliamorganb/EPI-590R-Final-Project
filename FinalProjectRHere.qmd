@@ -12,12 +12,12 @@ execute:
 library(tidyverse)
 library(gtsummary)
 install.packages("here")
-contrib.url(repos, "source")
+library(here)
 
+setwd("/Users/juliabaumohl/Library/CloudStorage/OneDrive-Emory/EPI 590 R Bootcamp/EPI590R Final Project")
 
-write_rsd(covid_testing, here::here("EPI 590 R Bootcamp","EPI 590 R Bootcamp/EPI590R Final Project", "covid_testing.rda"))
+load(here("covid_testing.rda"))
 					
-
 covid_testing$gender_num <- ifelse(covid_testing$gender == "female",1,0)
 covid_testing$result_num <- ifelse(covid_testing$result == "negative",0,
 																	 ifelse(covid_testing$result == "positive", 1, NA))
