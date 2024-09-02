@@ -11,33 +11,24 @@ execute:
 library(tidyverse)
 library(gtsummary)
 
-install.packages("here")
-setwd("EPI590R Final Project")
-
-covid_testing <- load(here::here("EPI590R Final Project", "covid_testing.rda"))
-#####KEEP TRYING TO CHANGE WORKING DIRECTORY/USE HERE PACKAGE TO CALL
-
-
-
-
-
-
-
+load("/Users/juliabaumohl/Library/CloudStorage/OneDrive-Emory/EPI 590 R Bootcamp/EPI590R Final Project/covid_testing.rda")
 
 
 covid_testing$gender_num <- ifelse(covid_testing$gender == "female",1,0)
 covid_testing$result_num <- ifelse(covid_testing$result == "negative",0,
 																	 ifelse(covid_testing$result == "positive", 1, NA))
+
 ```
 
-# Data Background:					
+# Data Background:			
 
-This data set is from Amrom E. Obstfeld, who de-identified data on COVID-19 testing during 2020 at CHOP (Children’s Hospital of Pennsylvania). This data set contains data concerning testing for SARS-CoV2 via PCR as well as associated metadata including names, ages, genders, day of pandemic testing took place, clinic names, etc. The data has been anonymized, time-shifted, and permuted.
+This data set is from Amrom E. Obstfeld, who de-identified data on COVID-19 testing during 2020 at CHOP (Children’s Hospital of Pennsylvania). This data set contains data concerning testing for SARS-CoV2 via PCR as well as associated metadata including names, ages, genders, day of pandemic testing took place, clinic names, etc. The data has been anonymized, time-shifted, and permuted. There were `r nrow(covid_testing)` participants.
 
 # Table 1
 
 ```{r}
-tbl_summary(
+
+table1 <- tbl_summary(
 	covid_testing,
 	by = result,
 	include = c(gender,age,pan_day),
@@ -46,9 +37,12 @@ label = list(
 	age ~ "Age (Years)",
 	pan_day ~ "Day after start of pandemic in which specimen was collected"
 ))
+table1
 ```
 
 This table 1 is not inclusive of all variables in the data set, only of variables included in the regression.
+
+The IQR for age of invalid tests is `r inline_text(table1, variable = "age", column = "stat_1")`.
 
 # Regression
 
@@ -60,6 +54,7 @@ tbl_uvregression(
 	method = glm,
 	method.args = list(family = binomial()),
 	exponentiate = TRUE)
+
 ```
 
 This regression is not to be interpreted scientifically, and only conducted for coding practice purposes.
@@ -82,18 +77,3 @@ max_minus_min <- function(x){
 max_minus_min(x = covid_testing$pan_day)
 
 ```
-
-# LEFT TO DO
-
-Inline R code in at least 2 places, 1 pulling a statistic from a table (i.e., using `gtsummary::inline_text()`) and 1 printing something else (like we did with the mean age in the example) (1 pt)
-
--   Cross-references to a table and a figure at least once each (1 pt)
-
-```{=html}
-<!-- -->
-```
--   Use the `{here}` package every time you refer to file paths when reading in data and saving any files (1 pt)
-
-    -   You must use it at least twice Feel free to save any files that you create (e.g., your figure) in your code
-
--   In a README file, include any notes necessary for us to easily reproduce your analysis (e.g., “Run `script.R` and then render `document.qmd`”) (1 pt)
