@@ -49,14 +49,14 @@ The IQR for age of invalid tests is `r inline_text(table1, variable = "age", col
 #|label: uvregression
 #|tbl-cap: This regression analysis is not to be interpreted scientifically, and only conducted for coding practice purposes.
 
-tbl_uvregression(
+regression <- tbl_uvregression(
 	covid_testing,
 	y = result_num,
 	include = c(gender_num, age, pan_day),
 	method = glm,
 	method.args = list(family = binomial()),
 	exponentiate = TRUE)
-
+regression
 
 ```
 
@@ -65,10 +65,13 @@ The @uvregression only had one statistically significant characteristic, which w
 # Histogram of Day in Pandemic Testing Occured
 
 ```{r}
+#| label: histpanday
 #| fig-cap: "This table examines the number of COVID-19 tests daily in the data set after the pandemic began."
 hist(covid_testing$pan_day)
+
 ```
 
+The @histpanday varied throughout the pandemic. 
 
 ```{r}
 #| output: false

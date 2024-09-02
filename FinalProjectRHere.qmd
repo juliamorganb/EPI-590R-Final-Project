@@ -1,0 +1,89 @@
+---
+title: "FinalProjectRHere"
+author: "Julia Baumohl"
+format: html
+execute: 
+  echo: false
+---
+
+
+```{r}
+#| output: false
+library(tidyverse)
+library(gtsummary)
+install.packages("here")
+contrib.url(repos, "source")
+
+
+write_rsd(covid_testing, here::here("EPI 590 R Bootcamp","EPI 590 R Bootcamp/EPI590R Final Project", "covid_testing.rda"))
+					
+
+covid_testing$gender_num <- ifelse(covid_testing$gender == "female",1,0)
+covid_testing$result_num <- ifelse(covid_testing$result == "negative",0,
+																	 ifelse(covid_testing$result == "positive", 1, NA))
+
+```
+
+# Data Background:			
+
+This data set is from Amrom E. Obstfeld, who de-identified data on COVID-19 testing during 2020 at CHOP (Children’s Hospital of Pennsylvania). This data set contains data concerning testing for SARS-CoV2 via PCR as well as associated metadata including names, ages, genders, day of pandemic testing took place, clinic names, etc. The data has been anonymized, time-shifted, and permuted. There were `r nrow(covid_testing)` participants.
+
+# Table 1
+
+```{r}
+#| label: table-one
+#| tbl-cap: "This table 1 is not inclusive of all variables in the data set, only of variables included in the regression."
+table1 <- tbl_summary(
+	covid_testing,
+	by = result,
+	include = c(gender,age,pan_day),
+label = list(
+	gender ~ "Gender",
+	age ~ "Age (Years)",
+	pan_day ~ "Day after start of pandemic in which specimen was collected"
+))
+table1
+```
+
+The IQR for age of invalid tests is `r inline_text(table1, variable = "age", column = "stat_1")`.
+
+# Regression
+
+```{r}
+#|label: uvregression
+#|tbl-cap: This regression analysis is not to be interpreted scientifically, and only conducted for coding practice purposes.
+
+regression <- tbl_uvregression(
+	covid_testing,
+	y = result_num,
+	include = c(gender_num, age, pan_day),
+	method = glm,
+	method.args = list(family = binomial()),
+	exponentiate = TRUE)
+regression
+
+```
+
+The @uvregression only had one statistically significant characteristic, which was age.
+
+# Histogram of Day in Pandemic Testing Occured
+
+```{r}
+#| label: histpanday
+#| fig-cap: "This table examines the number of COVID-19 tests daily in the data set after the pandemic began."
+hist(covid_testing$pan_day)
+
+```
+
+The @histpanday varied throughout the pandemic. 
+
+```{r}
+#| output: false
+
+max_minus_min <- function(x){
+	maxminfunct <- max(x, na.rm = FALSE) - min(x, na.rm = FALSE)
+	return(maxminfunct)
+}
+max_minus_min(x = covid_testing$pan_day)
+
+```
