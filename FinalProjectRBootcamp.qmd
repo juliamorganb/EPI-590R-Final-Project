@@ -46,32 +46,8 @@ The IQR for age of invalid tests is `r inline_text(table1, variable = "age", col
 # Regression
 
 ```{r}
-
-#|label: regression
-
-#| fig-cap: "This regression is not to be interpreted scientifically, and only conducted for coding practice purposes."
-
-
-
-MAKE THIS CAPTION SHOW UPPPPPP
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#|label: uvregression
+#|tbl-cap: This regression analysis is not to be interpreted scientifically, and only conducted for coding practice purposes.
 
 tbl_uvregression(
 	covid_testing,
@@ -81,7 +57,10 @@ tbl_uvregression(
 	method.args = list(family = binomial()),
 	exponentiate = TRUE)
 
+
 ```
+
+The @uvregression only had one statistically significant characteristic, which was age.
 
 # Histogram of Day in Pandemic Testing Occured
 
