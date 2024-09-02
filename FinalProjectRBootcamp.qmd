@@ -27,7 +27,8 @@ This data set is from Amrom E. Obstfeld, who de-identified data on COVID-19 test
 # Table 1
 
 ```{r}
-
+#| label: table-one
+#| tbl-cap: "This table 1 is not inclusive of all variables in the data set, only of variables included in the regression."
 table1 <- tbl_summary(
 	covid_testing,
 	by = result,
@@ -40,13 +41,38 @@ label = list(
 table1
 ```
 
-This table 1 is not inclusive of all variables in the data set, only of variables included in the regression.
-
 The IQR for age of invalid tests is `r inline_text(table1, variable = "age", column = "stat_1")`.
 
 # Regression
 
 ```{r}
+
+#|label: regression
+
+#| fig-cap: "This regression is not to be interpreted scientifically, and only conducted for coding practice purposes."
+
+
+
+MAKE THIS CAPTION SHOW UPPPPPP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 tbl_uvregression(
 	covid_testing,
 	y = result_num,
@@ -57,15 +83,13 @@ tbl_uvregression(
 
 ```
 
-This regression is not to be interpreted scientifically, and only conducted for coding practice purposes.
-
 # Histogram of Day in Pandemic Testing Occured
 
 ```{r}
+#| fig-cap: "This table examines the number of COVID-19 tests daily in the data set after the pandemic began."
 hist(covid_testing$pan_day)
 ```
 
-This table examines the number of COVID-19 tests daily in the data set after the pandemic began.
 
 ```{r}
 #| output: false
