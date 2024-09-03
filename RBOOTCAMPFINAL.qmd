@@ -1,7 +1,9 @@
 ---
 title: "Final Project R Bootcamp"
 author: "Julia Baumohl"
-format: html
+format: 
+  html:
+    embed-resources: true
 theme: cosmo
 execute: 
   echo: false
@@ -49,8 +51,8 @@ The IQR for age of invalid tests is `r inline_text(table1, variable = "age", col
 # Regression
 
 ```{r}
-#|label: uvregression
-#|tbl-cap: This regression analysis is not to be interpreted scientifically, and only conducted for coding practice purposes.
+#| label: uv-regression
+#| tbl-cap: "This regression analysis is not to be interpreted scientifically, and only conducted for coding practice purposes."
 
 regression <- tbl_uvregression(
 	covid_testing,
@@ -63,20 +65,20 @@ regression
 
 ```
 
-The @uvregression only had one statistically significant characteristic, which was age.
+The @uv-regression only had one statistically significant characteristic, which was age.
 
 # Histogram of Day in Pandemic Testing Occured
 
 ```{r}
 #| message: false
-#| label: histpanday
+#| label: hist-panday
 #| fig-cap: "This table examines the number of COVID-19 tests daily in the data set after the pandemic began."
 dayhist <- hist(covid_testing$pan_day)
-ggsave(here::here("figures","dayhist.jpeg"))
+ggsave(here::here("figures","dayhist.png"))
 
 ```
 
-The @histpanday varied throughout the pandemic. 
+The @hist-panday varied throughout the pandemic. 
 
 ```{r}
 #| output: false
