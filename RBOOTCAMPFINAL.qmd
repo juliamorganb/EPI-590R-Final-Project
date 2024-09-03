@@ -53,7 +53,6 @@ The IQR for age of invalid tests is `r inline_text(table1, variable = "age", col
 ```{r}
 #| label: uv-regression
 #| tbl-cap: "This regression analysis is not to be interpreted scientifically, and only conducted for coding practice purposes."
-
 regression <- tbl_uvregression(
 	covid_testing,
 	y = result_num,
