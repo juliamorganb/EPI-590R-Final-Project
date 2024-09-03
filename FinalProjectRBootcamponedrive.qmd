@@ -67,7 +67,7 @@ The @uvregression only had one statistically significant characteristic, which w
 ```{r}
 #| label: histpanday
 #| fig-cap: "This table examines the number of COVID-19 tests daily in the data set after the pandemic began."
-hist(covid_testing$pan_day)
+dayhist <- hist(covid_testing$pan_day)
 
 ```
 
