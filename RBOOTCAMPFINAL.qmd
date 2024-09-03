@@ -1,7 +1,8 @@
 ---
-title: "FinalProjectRHere"
+title: "Final Project R Bootcamp"
 author: "Julia Baumohl"
 format: html
+theme: cosmo
 execute: 
   echo: false
 ---
@@ -14,7 +15,7 @@ library(here)
 library(dplyr)
 library(ggplot2)
 
-covid_testing <- load(here("covid_testing.rda"))
+load(here::here("data", "covid_testing.rda"))
 					
 covid_testing$gender_num <- ifelse(covid_testing$gender == "female",1,0)
 covid_testing$result_num <- ifelse(covid_testing$result == "negative",0,
@@ -67,9 +68,11 @@ The @uvregression only had one statistically significant characteristic, which w
 # Histogram of Day in Pandemic Testing Occured
 
 ```{r}
+#| message: false
 #| label: histpanday
 #| fig-cap: "This table examines the number of COVID-19 tests daily in the data set after the pandemic began."
-hist(covid_testing$pan_day)
+dayhist <- hist(covid_testing$pan_day)
+ggsave(here::here("figures","dayhist.jpeg"))
 
 ```
 

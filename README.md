@@ -1,2 +1,1 @@
-use this file to explain what they need to do to read it 
-how to make it not my working directory?
+In order to render document, download covid_testing.rda from https://github.com/higgi13425/medicaldata/tree/master/data
